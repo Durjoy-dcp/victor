@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { ITasks } from "../../model/ITasks";
 import SingleTask from "../SingleTask/SingleTask";
 import { BiMessageSquareEdit } from "react-icons/bi";
@@ -7,13 +8,28 @@ import { GrCompliance } from "react-icons/gr";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 const MyTask: React.FC = () => {
-  const [mytasks, setMyTasks] = useState<ITasks[]>([] as ITasks[]);
+  const user = "";
+  // const [mytasks, setMyTasks] = useState<ITasks[]>([] as ITasks[]);
   const navigate = useNavigate();
-  useEffect(() => {
-    fetch("http://localhost:5000/mytasks")
-      .then((res) => res.json())
-      .then((data) => setMyTasks(data));
-  }, []);
+  const uri = `http://localhost:5000/mytasks?user=${user}`;
+  const {
+    data: mytasks = [] as ITasks[],
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["user", user],
+    queryFn: async () => {
+      const res = await fetch(uri, {});
+      const data = await res.json();
+      return data;
+    },
+  });
+  console.log(mytasks);
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/mytasks")
+  //     .then((res) => res.json())
+  //     .then((data) => setMyTasks(data));
+  // }, []);
 
   const handleToCompleted = (id: string): void => {
     console.log(id);
@@ -36,7 +52,7 @@ const MyTask: React.FC = () => {
       <h1>My tasks</h1>
       <div className="container mx-auto m-2">
         <div className="grid md:grid-cols-3 grid-cols-1">
-          {mytasks.map((mytask) => (
+          {mytasks.map((mytask: ITasks) => (
             <SingleTask key={mytask._id} mytask={mytask}>
               <div className="flex flex-wrap justify-center items-center">
                 <button className="m-3">
