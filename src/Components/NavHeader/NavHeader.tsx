@@ -15,27 +15,26 @@ const NavHeader: React.FC = () => {
             </span> */}
       <div className="container mx-auto">
         <Navbar fluid={true} rounded={true}>
-          <Navbar.Brand href="https://flowbite.com/">
-            <img
-              src="https://i.ibb.co/N9FpBb8/2129902a6b939c745ff7b78166bcec5f-removebg-preview.png"
-              className="mr-3 h-6 sm:h-9"
-              alt="Flowbite Logo"
-            />
-            <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-              Victor
-            </span>
-          </Navbar.Brand>
+          <div className="">
+            {" "}
+            <Link to="/" className="flex items-center">
+              <img
+                src="https://i.ibb.co/N9FpBb8/2129902a6b939c745ff7b78166bcec5f-removebg-preview.png"
+                className="mr-3 h-6 sm:h-9"
+                alt="Flowbite Logo"
+              />
+              <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+                Victor
+              </span>
+            </Link>
+          </div>
           <Navbar.Toggle />
           <Navbar.Collapse>
-            <Navbar.Link>
-              <Link to="/addtask">Add task</Link>
-            </Navbar.Link>
-            <Navbar.Link>
-              <Link to="/mytask">My task</Link>
-            </Navbar.Link>
-            <Navbar.Link>
-              <Link to="/completedtask">Completed Task</Link>
-            </Navbar.Link>
+            <Link to="/addtask">Add task</Link>
+
+            <Link to="/mytask">My task</Link>
+
+            <Link to="/completedtask">Completed Task</Link>
           </Navbar.Collapse>
         </Navbar>
       </div>

@@ -5,10 +5,16 @@ const AddTask: React.FC = () => {
   const date = `${current.getDate()}/${
     current.getMonth() + 1
   }/${current.getFullYear()}`;
+
+  const handleToSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+    console.log(event);
+  };
+
   return (
     <div className="container mx-auto">
-      <form className=" m-6 ">
-        <div className="grid md:grid-cols-2 md:gap-6">
+      <form className=" m-6 " onSubmit={(e) => handleToSubmit(e)}>
+        <div className="grid grid-cols-2 md:gap-6 my-2">
           <div className="relative z-0 mb-6 w-full group">
             <input
               type="text"
@@ -26,10 +32,10 @@ const AddTask: React.FC = () => {
             </label>
           </div>
           <div>
-            <h1 className="text-sm text-gray-500">{date}</h1>
+            <h1 className="text-sm text-gray-500 my-2">{date}</h1>
           </div>
         </div>
-        <div className="relative z-0 mb-6 w-full group">
+        <div className="relative z-0 mb-6 w-full group my-2">
           <input
             type="text"
             name="task_details"
