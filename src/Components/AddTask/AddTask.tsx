@@ -8,12 +8,15 @@ const AddTask: React.FC = () => {
 
   const handleToSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    console.log(event);
+    const title: string = event.currentTarget.task_title.value;
+    const details: string = event.currentTarget.task_details.value;
+
+    console.log(title, details);
   };
 
   return (
     <div className="container mx-auto">
-      <form className=" m-6 " onSubmit={(e) => handleToSubmit(e)}>
+      <form className=" m-6 " onSubmit={handleToSubmit}>
         <div className="grid grid-cols-2 md:gap-6 my-2">
           <div className="relative z-0 mb-6 w-full group">
             <input
