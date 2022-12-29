@@ -8,7 +8,7 @@ const Main: React.FC = () => {
   return (
     <div>
       <NavHeader></NavHeader>
-      <SocialLogin></SocialLogin>
+
       <Toaster />
       <Outlet></Outlet>
     </div>

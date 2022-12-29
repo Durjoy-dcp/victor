@@ -36,13 +36,15 @@ const NavHeader: React.FC = () => {
           </div>
           <Navbar.Toggle />
           <Navbar.Collapse>
-            <Link to="/addtask">Add task</Link>
-
-            <Link to="/mytask">My task</Link>
-
-            <Link to="/completedtask">Completed Task</Link>
             {user && user?.email ? (
-              <button onClick={handleToLogOut}>Logout</button>
+              <>
+                <Link to="/addtask">Add task</Link>
+
+                <Link to="/mytask">My task</Link>
+
+                <Link to="/completedtask">Completed Task</Link>
+                <button onClick={handleToLogOut}>Logout</button>
+              </>
             ) : (
               <>
                 <Link to="/login">Login</Link>
