@@ -7,6 +7,7 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { GrCompliance } from "react-icons/gr";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { DeleteTask } from "../DeleteTask/DeleteTask";
 const MyTask: React.FC = () => {
   const user = "";
   // const [mytasks, setMyTasks] = useState<ITasks[]>([] as ITasks[]);
@@ -45,6 +46,9 @@ const MyTask: React.FC = () => {
         }
       });
   };
+  const handleToDelete = (id: string): void => {
+    DeleteTask(id, refetch);
+  };
 
   console.log(mytasks);
   return (
@@ -59,7 +63,10 @@ const MyTask: React.FC = () => {
                   <BiMessageSquareEdit className="text-2xl text-gray-400 hover:text-gray-600" />
                 </button>
 
-                <button className="m-3">
+                <button
+                  className="m-3"
+                  onClick={() => handleToDelete(mytask._id)}
+                >
                   <RiDeleteBin5Line className="text-2xl text-gray-400 hover:text-gray-600" />
                 </button>
                 <button
