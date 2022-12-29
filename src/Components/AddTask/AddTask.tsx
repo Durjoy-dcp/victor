@@ -28,7 +28,7 @@ const AddTask: React.FC = () => {
     };
     setLoading(true);
 
-    fetch("https://victor-server-2.vercel.app/insert", {
+    fetch("http://localhost:5000/insert", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -33,7 +33,7 @@ interface IAuth {
 }
 
 const AuthProvider: React.FC<IAuth> = ({ children }) => {
-  const [user, setuser] = useState<any | null>("");
+  const [user, setuser] = useState<User | null>(null);
   const gProvider = new GoogleAuthProvider();
   const [loading, seLoading] = useState<boolean>(true);
   const signup = (email: string, password: string) => {
