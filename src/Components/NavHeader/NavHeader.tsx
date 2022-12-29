@@ -1,8 +1,11 @@
 import { Navbar } from "flowbite-react";
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Context/AuthProvider";
 
 const NavHeader: React.FC = () => {
+  const { user } = useContext(AuthContext);
+
   return (
     <div>
       {/* <img
@@ -31,6 +34,7 @@ const NavHeader: React.FC = () => {
           <Navbar.Toggle />
           <Navbar.Collapse>
             <Link to="/addtask">Add task</Link>
+            {user && user?.email && <Link to="/addtask">Logout</Link>}
 
             <Link to="/mytask">My task</Link>
 

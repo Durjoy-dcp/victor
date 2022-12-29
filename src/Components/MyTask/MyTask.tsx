@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ITasks } from "../../model/ITasks";
 import SingleTask from "../SingleTask/SingleTask";
@@ -8,9 +8,11 @@ import { GrCompliance } from "react-icons/gr";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { DeleteTask } from "../DeleteTask/DeleteTask";
+import { AuthContext } from "../../Context/AuthProvider";
 
 const MyTask: React.FC = () => {
   const user = "";
+  console.log(user);
   // const [mytasks, setMyTasks] = useState<ITasks[]>([] as ITasks[]);
   const navigate = useNavigate();
   const uri = `http://localhost:5000/mytasks?user=${user}`;
