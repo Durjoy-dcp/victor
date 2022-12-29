@@ -35,7 +35,7 @@ const Login: React.FC = () => {
               id="email1"
               type="email"
               name="email"
-              placeholder="name@flowbite.com"
+              placeholder="name@gmail.com"
               required={true}
             />
           </div>
