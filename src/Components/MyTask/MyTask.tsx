@@ -8,6 +8,7 @@ import { GrCompliance } from "react-icons/gr";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { DeleteTask } from "../DeleteTask/DeleteTask";
+
 const MyTask: React.FC = () => {
   const user = "";
   // const [mytasks, setMyTasks] = useState<ITasks[]>([] as ITasks[]);
@@ -31,6 +32,38 @@ const MyTask: React.FC = () => {
   //     .then((res) => res.json())
   //     .then((data) => setMyTasks(data));
   // }, []);
+
+  const handleToUpdate = (
+    event: React.FormEvent<HTMLFormElement>,
+    id: string
+  ): void => {
+    event.preventDefault();
+    console.log("its calling");
+    const title: string = event.currentTarget.task_title.value;
+    const details: string = event.currentTarget.task_details.value;
+    const data = { title, details };
+    fetch(`http://localhost:5000/update/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount) {
+          toast.success("Task updated");
+          refetch();
+        } else {
+          toast.error("Sorry! faced challenges ");
+        }
+      })
+      .catch((er) => {
+        toast.error("Sorry! faced challenges on server");
+      });
+
+    console.log(title, details, id);
+  };
 
   const handleToCompleted = (id: string): void => {
     console.log(id);
@@ -57,11 +90,15 @@ const MyTask: React.FC = () => {
       <div className="container mx-auto m-2">
         <div className="grid md:grid-cols-3 grid-cols-1">
           {mytasks.map((mytask: ITasks) => (
-            <SingleTask key={mytask._id} mytask={mytask}>
+            <SingleTask
+              key={mytask._id}
+              mytask={mytask}
+              handleToUpdate={handleToUpdate}
+            >
               <div className="flex flex-wrap justify-center items-center">
-                <button className="m-3">
+                {/* <button className="m-3">
                   <BiMessageSquareEdit className="text-2xl text-gray-400 hover:text-gray-600" />
-                </button>
+                </button> */}
 
                 <button
                   className="m-3"
