@@ -6,6 +6,8 @@ import Main from "./Layout/Main";
 import AddTask from "./Components/AddTask/AddTask";
 import MyTask from "./Components/MyTask/MyTask";
 import CompletedTask from "./Components/CompletedTask/CompletedTask";
+import Login from "./Components/Login/Login";
+import SignUp from "./Components/SingUp/SignUp";
 
 function App() {
   const router = createBrowserRouter([
@@ -24,6 +26,14 @@ function App() {
         {
           path: "/completedtask",
           element: <CompletedTask></CompletedTask>,
+        },
+        {
+          path: "/login",
+          element: <Login></Login>,
+        },
+        {
+          path: "/signup",
+          element: <SignUp></SignUp>,
         },
       ],
     },

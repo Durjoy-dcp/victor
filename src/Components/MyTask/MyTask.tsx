@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { ITasks } from "../../model/ITasks";
-import SingleTask from "../SingleTask/SingleTask";
 import { BiMessageSquareEdit } from "react-icons/bi";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { GrCompliance } from "react-icons/gr";
@@ -9,6 +8,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { DeleteTask } from "../DeleteTask/DeleteTask";
 import { AuthContext } from "../../Context/AuthProvider";
+import SingleTask from "../SingleTask/SingleTask";
 
 const MyTask: React.FC = () => {
   const user = "";

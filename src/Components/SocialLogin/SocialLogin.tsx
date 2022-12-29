@@ -18,7 +18,7 @@ const SocialLogin: React.FC = () => {
   };
   return (
     <div>
-      <button className="btn btn-outline  w-full" onClick={handleToSignIn}>
+      <button className="btn  w-full" onClick={handleToSignIn}>
         CONTINUE WITH GOOGLE
       </button>
     </div>

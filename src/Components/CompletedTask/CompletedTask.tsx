@@ -3,7 +3,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ITasks } from "../../model/ITasks";
 import { DeleteTask } from "../DeleteTask/DeleteTask";
-import SingleTask from "../SingleTask/SingleTask";
 import { BiMessageSquareEdit } from "react-icons/bi";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { GrCompliance } from "react-icons/gr";

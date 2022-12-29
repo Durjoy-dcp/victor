@@ -41,8 +41,13 @@ const NavHeader: React.FC = () => {
             <Link to="/mytask">My task</Link>
 
             <Link to="/completedtask">Completed Task</Link>
-            {user && user?.email && (
+            {user && user?.email ? (
               <button onClick={handleToLogOut}>Logout</button>
+            ) : (
+              <>
+                <Link to="/login">Login</Link>
+                <Link to="/signup">Sign Up</Link>
+              </>
             )}
           </Navbar.Collapse>
         </Navbar>
