@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ITasks } from "../../model/ITasks";
 import { DeleteTask } from "../DeleteTask/DeleteTask";
@@ -9,12 +9,13 @@ import { GrCompliance } from "react-icons/gr";
 import toast from "react-hot-toast";
 import CompletedSingleTask from "../CompletedSingleTask/CompletedSingleTask";
 import { Button } from "flowbite-react";
+import { AuthContext } from "../../Context/AuthProvider";
 
 const CompletedTask: React.FC = () => {
-  const user = "";
+  const { user } = useContext(AuthContext);
   // const [mytasks, setMyTasks] = useState<ITasks[]>([] as ITasks[]);
   const navigate = useNavigate();
-  const uri = `http://localhost:5000/completed?user=${user}`;
+  const uri = `http://localhost:5000/completed?user=${user?.email}`;
   const {
     data: mytasks = [] as ITasks[],
     isLoading,

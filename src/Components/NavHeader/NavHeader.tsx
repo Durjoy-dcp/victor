@@ -44,6 +44,7 @@ const NavHeader: React.FC = () => {
 
                 <Link to="/completedtask">Completed Task</Link>
                 <button onClick={handleToLogOut}>Logout</button>
+                <p className="text-xs ">{user?.email}</p>
               </>
             ) : (
               <>

@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Context/AuthProvider";
 import Spinner from "../Spinner/Spinner";
 
 const AddTask: React.FC = () => {
+  const { user } = useContext(AuthContext);
   const current = new Date();
   const navigate = useNavigate();
   const date = `${current.getDate()}/${
@@ -16,7 +18,13 @@ const AddTask: React.FC = () => {
     const title: string = event.currentTarget.task_title.value;
     const details: string = event.currentTarget.task_details.value;
 
-    const data = { title, details, date: date, isComplete: false, user: "" };
+    const data = {
+      title,
+      details,
+      date: date,
+      isComplete: false,
+      user: user?.email,
+    };
     setLoading(true);
 
     fetch("http://localhost:5000/insert", {
