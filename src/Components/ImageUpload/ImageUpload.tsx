@@ -1,22 +1,36 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
 import { MdFileUpload } from "react-icons/md";
+import lottie from "lottie-web";
 
 interface Iimage {
   img: string;
   user: string | null;
 }
+
 const ImageUpload: React.FC = () => {
+  const container = useRef<any>(null);
   const { user } = useContext(AuthContext);
   const imageHostKey = process.env.REACT_APP_imgbb;
   const [selectedImage, setSelectedImage] = useState<any>();
-
   // This function will be triggered when the file field change
   const imageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       setSelectedImage(e.target.files[0]);
     }
   };
+  useEffect(() => {
+    const instance = lottie.loadAnimation({
+      container: container.current, // the dom element that will contain the animation
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      animationData: require("../assets/img-upload.json"), // the path to the animation json
+    });
+
+    return () => instance.destroy();
+  }, []);
+
   const handleToUploadImage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const img = e.currentTarget.img.files[0];
@@ -47,10 +61,18 @@ const ImageUpload: React.FC = () => {
       });
   };
   return (
-    <div>
-      <div className="border shadow-lg rounded-lg p-2 max-w-sm mx-auto ">
-        <div className="  ">
-          <form className="p-2" onSubmit={handleToUploadImage}>
+    <div className="">
+      <div className="text-center">
+        <div ref={container} className="w-1/2 mx-auto"></div>
+        <h3 className="text-2xl font-bold p-2">
+          UPLOAD IMAGES TO CREATE <br /> MEMORIES EVERYDAY
+        </h3>
+      </div>
+      <div className=" max-w-sm mx-auto ">
+        <div className=" border shadow-lg rounded-lg p-2   ">
+          <h3 className="text-2xl p-3">Image Upload here</h3>
+          <div></div>
+          <form className="p-2 self-end" onSubmit={handleToUploadImage}>
             {selectedImage && (
               <div>
                 <img
