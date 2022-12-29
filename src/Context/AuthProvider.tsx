@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 import {
   getAuth,
@@ -20,6 +20,7 @@ export interface AuthContextModel {
   login: (email: string, password: string) => Promise<UserCredential>;
   signup: (email: string, password: string) => Promise<UserCredential>;
   googleSignIn: () => Promise<UserCredential>;
+  logOut: () => void;
 }
 
 export const AuthContext = React.createContext<AuthContextModel>(
@@ -50,12 +51,20 @@ const AuthProvider: React.FC<IAuth> = ({ children }) => {
   const googleSignIn = (): Promise<UserCredential> => {
     return signInWithPopup(auth, gProvider);
   };
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setuser(currentUser);
+      seLoading(false);
+    });
+    return () => unsubscribe();
+  }, []);
 
   const authInfo = {
     user,
     login,
     signup,
     googleSignIn,
+    logOut,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

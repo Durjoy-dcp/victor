@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 
 const NavHeader: React.FC = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+  const handleToLogOut = () => {
+    logOut();
+  };
 
   return (
     <div>
@@ -34,11 +37,13 @@ const NavHeader: React.FC = () => {
           <Navbar.Toggle />
           <Navbar.Collapse>
             <Link to="/addtask">Add task</Link>
-            {user && user?.email && <Link to="/addtask">Logout</Link>}
 
             <Link to="/mytask">My task</Link>
 
             <Link to="/completedtask">Completed Task</Link>
+            {user && user?.email && (
+              <button onClick={handleToLogOut}>Logout</button>
+            )}
           </Navbar.Collapse>
         </Navbar>
       </div>
