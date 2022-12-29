@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import Spinner from "../Spinner/Spinner";
 
 const AddTask: React.FC = () => {
   const current = new Date();
+  const navigate = useNavigate();
   const date = `${current.getDate()}/${
     current.getMonth() + 1
   }/${current.getFullYear()}`;
@@ -29,6 +31,7 @@ const AddTask: React.FC = () => {
         if (data.acknowledged) {
           toast.success("Task added");
           setLoading(false);
+          navigate("/mytask");
         } else {
           setLoading(false);
           toast.error("Sorry! faced challenges ");

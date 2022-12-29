@@ -9,6 +9,7 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { GrCompliance } from "react-icons/gr";
 import toast from "react-hot-toast";
 import CompletedSingleTask from "../CompletedSingleTask/CompletedSingleTask";
+import { Button } from "flowbite-react";
 
 const CompletedTask: React.FC = () => {
   const user = "";
@@ -30,6 +31,19 @@ const CompletedTask: React.FC = () => {
   const handleToDelete = (id: string): void => {
     DeleteTask(id, refetch);
   };
+  const handleToNotCompleted = (id: string): void => {
+    fetch(`http://localhost:5000/notcompleted?id=${id}`, {
+      method: "PATCH",
+      headers: { "Content-type": "application/json" },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount) {
+          toast.success("Marked as Not Completed");
+          navigate("/mytask");
+        }
+      });
+  };
 
   return (
     <div>
@@ -45,6 +59,12 @@ const CompletedTask: React.FC = () => {
                 >
                   <RiDeleteBin5Line className="text-2xl text-gray-400 hover:text-gray-600" />
                 </button>
+                <Button
+                  size="xs"
+                  onClick={() => handleToNotCompleted(mytask._id)}
+                >
+                  NOT COMPLETED
+                </Button>
               </div>
             </CompletedSingleTask>
           ))}
