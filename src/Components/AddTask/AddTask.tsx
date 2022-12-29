@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
+import ImageUpload from "../ImageUpload/ImageUpload";
 import Spinner from "../Spinner/Spinner";
 
 const AddTask: React.FC = () => {
@@ -109,6 +110,7 @@ const AddTask: React.FC = () => {
           </button>
         </form>
       )}
+      <ImageUpload></ImageUpload>
     </div>
   );
 };
