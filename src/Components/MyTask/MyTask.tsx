@@ -54,13 +54,9 @@ const MyTask: React.FC = () => {
         if (data.modifiedCount) {
           toast.success("Task updated");
           refetch();
-        } else {
-          toast.error("Sorry! faced challenges ");
         }
       })
-      .catch((er) => {
-        toast.error("Sorry! faced challenges on server");
-      });
+      .catch((er) => {});
 
     console.log(title, details, id);
   };
