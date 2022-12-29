@@ -47,9 +47,10 @@ const CompletedTask: React.FC = () => {
 
   return (
     <div>
-      <h1>My tasks</h1>
       <div className="container mx-auto m-2">
-        <div className="grid md:grid-cols-3 grid-cols-1">
+        <h1 className="text-3xl font-bold m-2">Completed Tasks</h1>
+        <hr />
+        <div className="grid md:grid-cols-3 grid-cols-1 m-2">
           {mytasks.map((mytask: ITasks) => (
             <CompletedSingleTask key={mytask._id} mytask={mytask}>
               <div className="flex flex-wrap justify-center items-center">
