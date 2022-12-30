@@ -9,6 +9,7 @@ import CompletedTask from "./Components/CompletedTask/CompletedTask";
 import Login from "./Components/Login/Login";
 import SignUp from "./Components/SingUp/SignUp";
 import Home from "./Components/Home/Home";
+import Private from "./Private/Private";
 
 function App() {
   const router = createBrowserRouter([
@@ -22,15 +23,27 @@ function App() {
         },
         {
           path: "/addtask",
-          element: <AddTask></AddTask>,
+          element: (
+            <Private>
+              <AddTask></AddTask>
+            </Private>
+          ),
         },
         {
           path: "/mytask",
-          element: <MyTask></MyTask>,
+          element: (
+            <Private>
+              <MyTask></MyTask>
+            </Private>
+          ),
         },
         {
           path: "/completedtask",
-          element: <CompletedTask></CompletedTask>,
+          element: (
+            <Private>
+              <CompletedTask></CompletedTask>
+            </Private>
+          ),
         },
         {
           path: "/login",

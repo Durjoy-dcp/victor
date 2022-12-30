@@ -41,9 +41,8 @@ const NavHeader: React.FC = () => {
             {user && user?.email ? (
               <>
                 <Link to="/addtask">Add task</Link>
-
                 <Link to="/mytask">My task</Link>
-
+                <button></button>{" "}
                 <Link to="/completedtask">Completed Task</Link>
                 <button onClick={handleToLogOut}>Logout</button>
                 <p className="text-xs ">{user?.email}</p>

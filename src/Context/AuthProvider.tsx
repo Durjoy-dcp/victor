@@ -21,6 +21,7 @@ export interface AuthContextModel {
   signup: (email: string, password: string) => Promise<UserCredential>;
   googleSignIn: () => Promise<UserCredential>;
   logOut: () => void;
+  loading: boolean;
 }
 
 export const AuthContext = React.createContext<AuthContextModel>(
@@ -65,6 +66,7 @@ const AuthProvider: React.FC<IAuth> = ({ children }) => {
     signup,
     googleSignIn,
     logOut,
+    loading,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

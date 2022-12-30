@@ -9,11 +9,13 @@ import { useNavigate } from "react-router-dom";
 import { DeleteTask } from "../DeleteTask/DeleteTask";
 import { AuthContext } from "../../Context/AuthProvider";
 import SingleTask from "../SingleTask/SingleTask";
+import Spinner from "../Spinner/Spinner";
 
 const MyTask: React.FC = () => {
   const { user } = useContext(AuthContext);
   // const [mytasks, setMyTasks] = useState<ITasks[]>([] as ITasks[]);
   const navigate = useNavigate();
+
   const uri = `http://localhost:5000/mytasks?user=${user?.email}`;
   const {
     data: mytasks = [] as ITasks[],
@@ -61,6 +63,9 @@ const MyTask: React.FC = () => {
 
     console.log(title, details, id);
   };
+  if (isLoading) {
+    return <Spinner></Spinner>;
+  }
 
   const handleToCompleted = (id: string): void => {
     console.log(id);

@@ -1,13 +1,16 @@
 import { Button, Label, TextInput } from "flowbite-react";
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login: React.FC = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/addtask";
   const handleToLogin = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     const email: string = event.currentTarget.email.value;
@@ -16,7 +19,7 @@ const Login: React.FC = () => {
     login(email, password)
       .then((res) => {
         toast.success("Successfully Logged");
-        navigate("/addtask");
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         toast.error("Sorry");
@@ -54,6 +57,12 @@ const Login: React.FC = () => {
             <Label htmlFor="remember">Minimum use 6 characters</Label>
           </div>
           <Button type="submit">Login</Button>
+          <h2>
+            New here?{" "}
+            <Link className="text-red-500" to="/signup">
+              Sign Up
+            </Link>
+          </h2>
 
           <SocialLogin></SocialLogin>
         </form>

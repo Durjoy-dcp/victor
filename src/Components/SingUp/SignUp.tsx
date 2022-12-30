@@ -1,14 +1,16 @@
 import { Button, Label, TextInput } from "flowbite-react";
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 import SocialLogin from "../SocialLogin/SocialLogin";
 
 const SignUp: React.FC = () => {
   const { signup } = useContext(AuthContext);
   const navigate = useNavigate();
-
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/addtask";
   const handleToSignUp = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     const username: string = event.currentTarget.username.value;
@@ -18,7 +20,7 @@ const SignUp: React.FC = () => {
     signup(email, password)
       .then((res) => {
         toast.success("Successfully joined");
-        navigate("/addtask");
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         toast.error("Sorry");
@@ -69,6 +71,12 @@ const SignUp: React.FC = () => {
           <Label htmlFor="remember">Minimum use 6 characters</Label>
         </div>
         <Button type="submit">Sign Up</Button>
+        <h2>
+          Already joined ?{" "}
+          <Link className="text-red-500" to="/login">
+            Login
+          </Link>
+        </h2>
 
         <SocialLogin></SocialLogin>
       </form>

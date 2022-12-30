@@ -8,11 +8,13 @@ const SocialLogin: React.FC = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-
+  let from = location.state?.from?.pathname || "/addtask";
+  console.log(from);
   const handleToSignIn = () => {
     googleSignIn()
       .then((res) => {
-        navigate("/addtask");
+        console.log("ekhane dhukse");
+        navigate("/");
       })
       .catch((er) => console.log(er));
   };
