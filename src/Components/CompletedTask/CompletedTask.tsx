@@ -45,6 +45,29 @@ const CompletedTask: React.FC = () => {
       });
   };
 
+  const handleToAddComment = (
+    e: React.FormEvent<HTMLFormElement>,
+    id: string
+  ): void => {
+    e.preventDefault();
+    const comment: string = e.currentTarget.comment.value;
+    const data = { comment };
+    fetch(`http://localhost:5000/comment/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount) {
+          toast.success("Comment updated");
+          refetch();
+        }
+      })
+      .catch((er) => {});
+  };
   return (
     <div>
       <div className="container mx-auto m-2">
@@ -52,7 +75,11 @@ const CompletedTask: React.FC = () => {
         <hr />
         <div className="grid md:grid-cols-3 grid-cols-1 m-2">
           {mytasks.map((mytask: ITasks) => (
-            <CompletedSingleTask key={mytask._id} mytask={mytask}>
+            <CompletedSingleTask
+              key={mytask._id}
+              mytask={mytask}
+              handleToAddComment={handleToAddComment}
+            >
               <div className="flex flex-wrap justify-center items-center">
                 <button
                   className="m-3"

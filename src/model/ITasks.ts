@@ -5,4 +5,5 @@ export interface ITasks {
   date: string;
   isComplete: boolean;
   user: string;
+  comment?: string;
 }

@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../Context/AuthProvider";
 import { MdFileUpload } from "react-icons/md";
 import lottie from "lottie-web";
+import { useNavigate } from "react-router-dom";
+import Spinner from "../Spinner/Spinner";
 
 interface Iimage {
   img: string;
@@ -11,6 +13,7 @@ interface Iimage {
 const ImageUpload: React.FC = () => {
   const container = useRef<any>(null);
   const { user } = useContext(AuthContext);
+  const [loading, setLoading] = useState<boolean>(false);
   const imageHostKey = process.env.REACT_APP_imgbb;
   const [selectedImage, setSelectedImage] = useState<any>();
   // This function will be triggered when the file field change
@@ -19,6 +22,7 @@ const ImageUpload: React.FC = () => {
       setSelectedImage(e.target.files[0]);
     }
   };
+  const navigate = useNavigate();
   useEffect(() => {
     const instance = lottie.loadAnimation({
       container: container.current, // the dom element that will contain the animation
@@ -33,6 +37,7 @@ const ImageUpload: React.FC = () => {
 
   const handleToUploadImage = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
     const img = e.currentTarget.img.files[0];
     console.log(img);
     const formData = new FormData();
@@ -56,10 +61,17 @@ const ImageUpload: React.FC = () => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify(imgdata),
+          }).then((res) => {
+            setLoading(false);
+
+            navigate("/mymedia");
           });
         }
       });
   };
+  if (loading) {
+    return <Spinner></Spinner>;
+  }
   return (
     <div className="">
       <div className="text-center">

@@ -10,6 +10,7 @@ import Login from "./Components/Login/Login";
 import SignUp from "./Components/SingUp/SignUp";
 import Home from "./Components/Home/Home";
 import Private from "./Private/Private";
+import Mymedia from "./Components/Mymedia/Mymedia";
 
 function App() {
   const router = createBrowserRouter([
@@ -34,6 +35,14 @@ function App() {
           element: (
             <Private>
               <MyTask></MyTask>
+            </Private>
+          ),
+        },
+        {
+          path: "/mymedia",
+          element: (
+            <Private>
+              <Mymedia></Mymedia>
             </Private>
           ),
         },

@@ -25,6 +25,7 @@ const AddTask: React.FC = () => {
       date: date,
       isComplete: false,
       user: user?.email,
+      comment: "",
     };
     setLoading(true);
 

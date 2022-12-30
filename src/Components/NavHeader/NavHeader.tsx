@@ -1,4 +1,4 @@
-import { Navbar } from "flowbite-react";
+import { Button, Navbar } from "flowbite-react";
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
@@ -40,17 +40,52 @@ const NavHeader: React.FC = () => {
           <Navbar.Collapse>
             {user && user?.email ? (
               <>
-                <Link to="/addtask">Add task</Link>
-                <Link to="/mytask">My task</Link>
+                <Link
+                  to="/addtask"
+                  className="text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent my-2 p-2 "
+                >
+                  Add task
+                </Link>
+                <Link
+                  to="/mytask"
+                  className="text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent my-2 p-2"
+                >
+                  My task
+                </Link>
                 <button></button>{" "}
-                <Link to="/completedtask">Completed Task</Link>
-                <button onClick={handleToLogOut}>Logout</button>
-                <p className="text-xs ">{user?.email}</p>
+                <Link
+                  to="/completedtask"
+                  className="text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent my-2 p-2"
+                >
+                  Completed Task
+                </Link>
+                <Link
+                  to="/mymedia"
+                  className="text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent my-2 p-2"
+                >
+                  My media
+                </Link>
+                <Button onClick={handleToLogOut} className=" border" size="xs">
+                  Logout
+                </Button>
+                <p className="text-xs  rounded  md:border-0 py-1">
+                  {user?.email}
+                </p>
               </>
             ) : (
               <>
-                <Link to="/login">Login</Link>
-                <Link to="/signup">Sign Up</Link>
+                <Link
+                  to="/login"
+                  className="text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent my-2 p-2"
+                >
+                  Login
+                </Link>
+                <Link
+                  to="/signup"
+                  className="text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent my-2 p-2"
+                >
+                  Sign Up
+                </Link>
               </>
             )}
           </Navbar.Collapse>
