@@ -11,7 +11,7 @@ const Mymedia: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:5000/mymedia?user=${user?.email}`)
+    fetch(`https://victor-server-2.vercel.app/mymedia?user=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setPicdata(data);

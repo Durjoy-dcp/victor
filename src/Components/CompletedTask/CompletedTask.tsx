@@ -15,7 +15,7 @@ const CompletedTask: React.FC = () => {
   const { user } = useContext(AuthContext);
   // const [mytasks, setMyTasks] = useState<ITasks[]>([] as ITasks[]);
   const navigate = useNavigate();
-  const uri = `http://localhost:5000/completed?user=${user?.email}`;
+  const uri = `https://victor-server-2.vercel.app/completed?user=${user?.email}`;
   const {
     data: mytasks = [] as ITasks[],
     isLoading,
@@ -32,7 +32,7 @@ const CompletedTask: React.FC = () => {
     DeleteTask(id, refetch);
   };
   const handleToNotCompleted = (id: string): void => {
-    fetch(`http://localhost:5000/notcompleted?id=${id}`, {
+    fetch(`https://victor-server-2.vercel.app/notcompleted?id=${id}`, {
       method: "PATCH",
       headers: { "Content-type": "application/json" },
     })
@@ -52,7 +52,7 @@ const CompletedTask: React.FC = () => {
     e.preventDefault();
     const comment: string = e.currentTarget.comment.value;
     const data = { comment };
-    fetch(`http://localhost:5000/comment/${id}`, {
+    fetch(`https://victor-server-2.vercel.app/comment/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

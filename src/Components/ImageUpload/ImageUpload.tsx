@@ -55,7 +55,7 @@ const ImageUpload: React.FC = () => {
             user: user?.email,
           };
           console.log(imgdata);
-          fetch(`http://localhost:5000/insertpic`, {
+          fetch(`https://victor-server-2.vercel.app/insertpic`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

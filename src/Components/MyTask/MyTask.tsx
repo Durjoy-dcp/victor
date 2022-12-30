@@ -16,7 +16,7 @@ const MyTask: React.FC = () => {
   // const [mytasks, setMyTasks] = useState<ITasks[]>([] as ITasks[]);
   const navigate = useNavigate();
 
-  const uri = `http://localhost:5000/mytasks?user=${user?.email}`;
+  const uri = `https://victor-server-2.vercel.app/mytasks?user=${user?.email}`;
   const {
     data: mytasks = [] as ITasks[],
     isLoading,
@@ -31,7 +31,7 @@ const MyTask: React.FC = () => {
   });
   console.log(mytasks);
   // useEffect(() => {
-  //   fetch("http://localhost:5000/mytasks")
+  //   fetch("https://victor-server-2.vercel.app/mytasks")
   //     .then((res) => res.json())
   //     .then((data) => setMyTasks(data));
   // }, []);
@@ -45,7 +45,7 @@ const MyTask: React.FC = () => {
     const title: string = event.currentTarget.task_title.value;
     const details: string = event.currentTarget.task_details.value;
     const data = { title, details };
-    fetch(`http://localhost:5000/update/${id}`, {
+    fetch(`https://victor-server-2.vercel.app/update/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -69,7 +69,7 @@ const MyTask: React.FC = () => {
 
   const handleToCompleted = (id: string): void => {
     console.log(id);
-    fetch(`http://localhost:5000/completed?id=${id}`, {
+    fetch(`https://victor-server-2.vercel.app/completed?id=${id}`, {
       method: "PATCH",
       headers: { "Content-type": "application/json" },
     })
