@@ -4,11 +4,15 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 
 const NavHeader: React.FC = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, dark, setdark } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleToLogOut = () => {
     logOut();
     navigate("/");
+  };
+  const handleToTheme = () => {
+    setdark(!dark);
+    console.log(dark);
   };
 
   return (
@@ -22,7 +26,7 @@ const NavHeader: React.FC = () => {
               Victor
             </span> */}
       <div className="container mx-auto">
-        <Navbar fluid={true} rounded={true}>
+        <Navbar fluid={true} rounded={true} className="bg-[#181A1B]">
           <div className="">
             {" "}
             <Link to="/" className="flex items-center">
@@ -38,6 +42,12 @@ const NavHeader: React.FC = () => {
           </div>
           <Navbar.Toggle />
           <Navbar.Collapse>
+            <button
+              onClick={handleToTheme}
+              className="text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent my-2 p-2 "
+            >
+              Change Theme
+            </button>
             {user && user?.email ? (
               <>
                 <Link

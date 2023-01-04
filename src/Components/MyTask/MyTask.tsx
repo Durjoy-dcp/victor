@@ -113,7 +113,7 @@ const MyTask: React.FC = () => {
                   className="m-3"
                   onClick={() => handleToCompleted(mytask._id)}
                 >
-                  <GrCompliance className="text-xl text-red-100 hover:text-gray-600" />
+                  <GrCompliance className={`bg-gray-400 `} />
                 </button>
               </div>
             </SingleTask>

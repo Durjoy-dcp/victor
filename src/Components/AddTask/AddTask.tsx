@@ -13,7 +13,7 @@ const AddTask: React.FC = () => {
     current.getMonth() + 1
   }/${current.getFullYear()}`;
   const [loading, setLoading] = useState<boolean>(false);
-
+  const { dark } = useContext(AuthContext);
   const handleToSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     const title: string = event.currentTarget.task_title.value;
@@ -64,7 +64,12 @@ const AddTask: React.FC = () => {
           {loading ? (
             <Spinner></Spinner>
           ) : (
-            <form className=" m-6 shadow-lg p-5" onSubmit={handleToSubmit}>
+            <form
+              className={`${
+                dark ? "border rounded-lg" : ""
+              } m-6 shadow-lg p-5 `}
+              onSubmit={handleToSubmit}
+            >
               <div className="grid grid-cols-2 md:gap-6 my-2">
                 <div className="relative z-0 mb-6 w-full group">
                   <input
@@ -72,7 +77,9 @@ const AddTask: React.FC = () => {
                     name="task_title"
                     id="task_title"
                     maxLength={25}
-                    className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    className={`${
+                      dark ? "text-gray-400" : ""
+                    } block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
                     placeholder=" "
                     required
                   />
@@ -93,7 +100,9 @@ const AddTask: React.FC = () => {
                   name="task_details"
                   id="task_details"
                   maxLength={50}
-                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  className={`${
+                    dark ? "text-gray-400" : ""
+                  } block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
                   placeholder=" "
                   required
                 />

@@ -1,5 +1,6 @@
 import { Button } from "flowbite-react";
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../Context/AuthProvider";
 import { ITasks } from "../../model/ITasks";
 
 interface ISingle {
@@ -14,6 +15,7 @@ const SingleTask: React.FC<ISingle> = ({
   children,
   handleToUpdate,
 }) => {
+  const { dark } = useContext(AuthContext);
   //   console.log(mytask);
   const { title, details, date, _id } = mytask;
   return (
@@ -29,7 +31,9 @@ const SingleTask: React.FC<ISingle> = ({
               name="task_title"
               id="task_title"
               maxLength={25}
-              className="block py-2.5 px-0 w-full  text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              className={`${
+                dark ? " text-white  text-gray-400" : ""
+              } block py-2.5 px-0 w-full  text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
               placeholder=" "
               required
               defaultValue={title}
@@ -52,7 +56,9 @@ const SingleTask: React.FC<ISingle> = ({
             name="task_details"
             id="task_details"
             maxLength={50}
-            className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            className={`${
+              dark ? " text-white  text-gray-400" : ""
+            } block py-2.5 px-0 w-full  text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
             placeholder=" "
             required
           />

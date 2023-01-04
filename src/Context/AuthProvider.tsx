@@ -21,6 +21,8 @@ export interface AuthContextModel {
   signup: (email: string, password: string) => Promise<UserCredential>;
   googleSignIn: () => Promise<UserCredential>;
   logOut: () => void;
+  dark: boolean;
+  setdark: (m: boolean) => void;
   loading: boolean;
 }
 
@@ -34,6 +36,7 @@ interface IAuth {
 }
 
 const AuthProvider: React.FC<IAuth> = ({ children }) => {
+  const [dark, setdark] = useState<boolean>(false);
   const [user, setuser] = useState<User | null>(null);
   const gProvider = new GoogleAuthProvider();
   const [loading, seLoading] = useState<boolean>(true);
@@ -67,6 +70,8 @@ const AuthProvider: React.FC<IAuth> = ({ children }) => {
     googleSignIn,
     logOut,
     loading,
+    dark,
+    setdark,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
