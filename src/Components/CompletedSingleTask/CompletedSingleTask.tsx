@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../Context/AuthProvider";
 import { ITasks } from "../../model/ITasks";
 interface ISingle {
   key: string;
@@ -13,21 +14,26 @@ const CompletedSingleTask: React.FC<ISingle> = ({
   handleToAddComment,
 }) => {
   const { title, details, date, _id, comment } = mytask;
+  const { dark } = useContext(AuthContext);
   return (
     <div className="p-2">
-      <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+      <div className="max-w-sm p-6  border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
         <div className="flex justify-between">
-          <h5 className="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5
+            className={`${
+              dark ? "text-gray-400" : " text-gray-900"
+            } mb-2 text-xl font-bold tracking-tight dark:text-white`}
+          >
             {title}
           </h5>
           <p>{date}</p>
         </div>
 
-        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+        <p className="mb-3 font-normal text-gray-600 dark:text-gray-400">
           {details}
         </p>
         <form
-          className=" "
+          className=""
           onBlur={(e) => handleToAddComment(e, _id)}
           onSubmit={(e) => handleToAddComment(e, _id)}
         >
@@ -38,7 +44,9 @@ const CompletedSingleTask: React.FC<ISingle> = ({
                 name="comment"
                 id="comment"
                 maxLength={25}
-                className="block py-2.5 px-0 w-full  text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                className={`${
+                  dark ? "text-gray-400" : ""
+                } block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer`}
                 placeholder=" "
                 required
                 defaultValue={comment}

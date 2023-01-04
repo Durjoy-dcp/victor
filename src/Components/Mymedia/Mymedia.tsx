@@ -6,7 +6,8 @@ import { IPics } from "../../model/IPics";
 import Spinner from "../Spinner/Spinner";
 
 const Mymedia: React.FC = () => {
-  const { user } = useContext(AuthContext);
+  const { user, dark } = useContext(AuthContext);
+
   const [picdata, setPicdata] = useState<IPics[]>([] as IPics[]);
   const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
@@ -53,7 +54,9 @@ const Mymedia: React.FC = () => {
             {picdata.map((pic) => (
               <img
                 key={pic._id}
-                className="max-w-xs max-h-52  p-2 pb-5 shadow-lg"
+                className={` ${
+                  dark ? "bg-gray-200   " : ""
+                } max-w-xs max-h-52  p-2 pb-5 shadow-lg`}
                 src={pic.img}
                 alt=""
               />

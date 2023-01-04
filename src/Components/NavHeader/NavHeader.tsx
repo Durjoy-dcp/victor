@@ -2,7 +2,7 @@ import { Button, Navbar } from "flowbite-react";
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
-
+import { BsSunFill, BsMoonFill } from "react-icons/bs";
 const NavHeader: React.FC = () => {
   const { user, logOut, dark, setdark } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -26,7 +26,11 @@ const NavHeader: React.FC = () => {
               Victor
             </span> */}
       <div className="container mx-auto">
-        <Navbar fluid={true} rounded={true} className="bg-[#181A1B]">
+        <Navbar
+          fluid={true}
+          rounded={true}
+          className={`${dark ? "bg-[#181A1B]" : ""}`}
+        >
           <div className="">
             {" "}
             <Link to="/" className="flex items-center">
@@ -41,37 +45,47 @@ const NavHeader: React.FC = () => {
             </Link>
           </div>
           <Navbar.Toggle />
-          <Navbar.Collapse>
+          <Navbar.Collapse className="">
             <button
               onClick={handleToTheme}
-              className="text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent my-2 p-2 "
+              className={`${
+                dark ? "text-yellow-400" : "text-gray-700"
+              } rounded hover:bg-gray-100 text-xl md:hover:bg-transparent md:border-0  md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent my-2 p-2 `}
             >
-              Change Theme
+              {dark ? <BsSunFill /> : <BsMoonFill></BsMoonFill>}
             </button>
             {user && user?.email ? (
               <>
                 <Link
                   to="/addtask"
-                  className="text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent my-2 p-2 "
+                  className={`${
+                    dark ? "text-gray-400" : "text-gray-700"
+                  } rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent my-2 p-2 `}
                 >
                   Add task
                 </Link>
                 <Link
                   to="/mytask"
-                  className="text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent my-2 p-2"
+                  className={`${
+                    dark ? "text-gray-400" : "text-gray-700"
+                  } rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent my-2 p-2 `}
                 >
                   My task
                 </Link>
                 <button></button>{" "}
                 <Link
                   to="/completedtask"
-                  className="text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent my-2 p-2"
+                  className={`${
+                    dark ? "text-gray-400" : "text-gray-700"
+                  } rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent my-2 p-2 `}
                 >
                   Completed Task
                 </Link>
                 <Link
                   to="/mymedia"
-                  className="text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent my-2 p-2"
+                  className={`${
+                    dark ? "text-gray-400" : "text-gray-700"
+                  } rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent my-2 p-2 `}
                 >
                   My media
                 </Link>
