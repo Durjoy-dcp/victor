@@ -2,6 +2,7 @@ import React from "react";
 import task from "../assets/task.png";
 import { motion } from "framer-motion";
 import Tpyeanim from "../Typeanim/Typeanim";
+import WithVictor from "../WithVictor/WithVictor";
 const Home: React.FC = () => {
   return (
     <div className="container mx-auto ">
@@ -40,6 +41,7 @@ const Home: React.FC = () => {
         <div>
           <img src={task} className="w-10/12 mx-auto" alt="" />
         </div>
+        <WithVictor></WithVictor>
       </div>
     </div>
   );
