@@ -3,7 +3,10 @@ import TaskLotify from "../TaskLotify/TaskLotify";
 import { AiFillCheckCircle } from "react-icons/ai";
 const WithVictor: React.FC = () => {
   return (
-    <div className="md:flex block items-center justify-between">
+    <div className="md:flex  flex-row-reverse block items-center justify-between text-center md:text-start">
+      <div>
+        <TaskLotify></TaskLotify>
+      </div>
       <div>
         <h1 className="text-4xl my-3 font-bold">With Victor you can</h1>
         <ul>
@@ -27,9 +30,6 @@ const WithVictor: React.FC = () => {
             Add feedback on your note
           </li>
         </ul>
-      </div>
-      <div>
-        <TaskLotify></TaskLotify>
       </div>
     </div>
   );

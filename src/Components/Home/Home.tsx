@@ -3,6 +3,8 @@ import task from "../assets/task.png";
 import { motion } from "framer-motion";
 import Tpyeanim from "../Typeanim/Typeanim";
 import WithVictor from "../WithVictor/WithVictor";
+import ByUploadingImageSection from "../ByUploadingImageSection/ByUploadingImageSection";
+import ShowActivity from "../ShowActivity/ShowActivity";
 const Home: React.FC = () => {
   return (
     <div className="container mx-auto ">
@@ -37,11 +39,14 @@ const Home: React.FC = () => {
             <Tpyeanim></Tpyeanim>
           </div>
         </div>
-
         <div>
           <img src={task} className="w-10/12 mx-auto" alt="" />
         </div>
+      </div>
+      <div className="container mx-auto max-w-4xl">
         <WithVictor></WithVictor>
+        <ByUploadingImageSection></ByUploadingImageSection>
+        <ShowActivity></ShowActivity>
       </div>
     </div>
   );
