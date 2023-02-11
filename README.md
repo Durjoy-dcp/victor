@@ -1,7 +1,8 @@
 # Victor 
 a task management website with  CRUD functionality
-
-
+<br/>
+<img alt="Coding" width="400" src="https://user-images.githubusercontent.com/108381781/211184526-2c92fd21-8093-4809-8cba-9ea134bbb1c5.gif">
+<br/>
 ## Technology
 
 - TypeScript
